@@ -12,4 +12,5 @@
     <color name="clrGreen">#00ff15</color>
     <color name="clrOrange">#ff6f00</color>
     <color name="clrPurple">#9500ff</color>
+    <color name="clrBlue">#001eff</color>
 </resources>
