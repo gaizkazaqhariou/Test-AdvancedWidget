@@ -1,6 +1,7 @@
 package org.aplas.colorgamex;
 
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -12,14 +13,32 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.concurrent.TimeUnit;
+
 public class MyActivity extends AppCompatActivity {
 
+    final String FORMAT = "%d:%d";
+    CountDownTimer countDown;
     TextView timer, clrText, scoreText;
     EditText passwd;
     Button submit, start;
     ViewGroup accessbox, colorbox, buttonbox1, buttonbox2, scorebox, progressbox;
     ProgressBar progress;
     Switch isMinus;
+
+    private void initTimer() {
+        countDown = new CountDownTimer(getResources().getInteger(R.integer.maxtimer) * 1000, 1) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                timer.setText("" + String.format(FORMAT, TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished)), TimeUnit.MILLISECONDS.toMillis(millisUntilFinished) - TimeUnit.SECONDS.toMillis(TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished))));
+            }
+
+            @Override
+            public void onFinish() {
+
+            }
+        };
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +59,8 @@ public class MyActivity extends AppCompatActivity {
         progressbox = findViewById(R.id.progressBox);
         progress = findViewById(R.id.progressScore);
         isMinus = findViewById(R.id.isMinus);
+
+        initTimer();
     }
 
     public void openGame(View v) {
