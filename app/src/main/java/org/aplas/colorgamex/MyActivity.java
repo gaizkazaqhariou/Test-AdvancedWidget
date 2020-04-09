@@ -13,10 +13,13 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 public class MyActivity extends AppCompatActivity {
 
+    String[] clrList;
+    HashMap charList = new HashMap();
     final String FORMAT = "%d:%d";
     CountDownTimer countDown;
     TextView timer, clrText, scoreText;
@@ -25,6 +28,15 @@ public class MyActivity extends AppCompatActivity {
     ViewGroup accessbox, colorbox, buttonbox1, buttonbox2, scorebox, progressbox;
     ProgressBar progress;
     Switch isMinus;
+
+    private void initColorList() {
+        clrList = getResources().getStringArray(R.array.colorList);
+        String[] temp = getResources().getStringArray(R.array.charList);
+
+        for (int i = 0; i < clrList.length; i++) {
+            charList.put(clrList[i], temp[i]);
+        }
+    }
 
     private void initTimer() {
         countDown = new CountDownTimer(getResources().getInteger(R.integer.maxtimer) * 1000, 1) {
@@ -61,6 +73,7 @@ public class MyActivity extends AppCompatActivity {
         isMinus = findViewById(R.id.isMinus);
 
         initTimer();
+        initColorList();
     }
 
     public void openGame(View v) {
