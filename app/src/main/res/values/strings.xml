@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ALAS COLOR GAME</string>
+    <string name="app_name">APLAS COLOR GAME</string>
     <string name="keyword">quiz@123</string>
     <integer name="minScore">0</integer>
     <integer name="maxScore">100</integer>
